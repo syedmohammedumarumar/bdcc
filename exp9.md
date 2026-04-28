@@ -1,62 +1,54 @@
 
 ---
 
-# 📄 🧪 EXPERIMENT 9 — SERVERLESS FUNCTION (AWS Lambda)
+# 📄 🧪 EXPERIMENT 9 — SERVERLESS APPLICATION
 
 ---
 
 # 🎯 **Aim**
 
-To develop and deploy a serverless function and configure triggers to execute it automatically. 
+To develop and deploy a serverless function in a cloud platform and configure triggers such as HTTP, event-based, and scheduled triggers. 
 
 ---
 
-# 🧠 **Theory (Write 5–6 lines only)**
+# 🧠 **Theory**
 
-Serverless computing is a cloud model where the cloud provider manages infrastructure and automatically scales resources.
+Serverless computing is a cloud computing model where the cloud provider manages infrastructure automatically.
 
-Users only write code, and execution happens based on triggers.
+Users only write code, and execution is triggered by events.
 
-Popular platforms include AWS Lambda, Azure Functions, and Google Cloud Functions.
+Popular serverless platforms include:
 
-Triggers like HTTP, events, and schedules invoke functions automatically. 
+* AWS Lambda
+* Azure Functions
+* Google Cloud Functions
 
----
-
-# 🧩 **UNDERSTAND IN 30 SECONDS**
-
-👉 You write a function
-👉 Cloud runs it automatically
+A trigger is an event that automatically invokes the function, such as HTTP requests, file uploads, or scheduled time events. 
 
 ---
 
-## 🔥 Flow:
-
-👉 **Create Function → Add Trigger → Run → Get Output**
+# ⚙️ **Procedure (AWS Lambda)**
 
 ---
 
-# ⚙️ **PROCEDURE (AWS LAMBDA)**
+### 🔴 Step 1: Login
+
+Open AWS Console → Navigate to **Lambda**
 
 ---
 
-## 🔴 Step 1: Login
+### 🔴 Step 2: Create Function
 
-👉 Open AWS Console → Lambda
-
----
-
-## 🔴 Step 2: Create Function
-
-* Name → HelloServerless
+* Click **Create Function**
+* Select **Author from Scratch**
+* Function Name → HelloServerless
 * Runtime → Python
-* Click Create
 
 ---
 
-## 🔴 Step 3: Write Code
+### 🔴 Step 3: Write Code
 
-```python id="l5mh2n"
+```python id="srv1"
 import json
 
 def lambda_handler(event, context):
@@ -70,65 +62,67 @@ def lambda_handler(event, context):
 
 ---
 
-# 🟡 STEP 4: ADD HTTP TRIGGER
+# 🟡 **Step 4: Add HTTP Trigger**
 
-👉 Add Trigger → API Gateway
-
-👉 Copy URL → open in browser
+* Click **Add Trigger**
+* Select **API Gateway**
+* Create new API
 
 ---
 
-## ✅ Output:
+### Output:
 
-```id="6y4hbg"
+```id="srv2"
 Hello! Serverless Function Executed Successfully
 ```
 
 ---
 
-# 🟢 STEP 5: EVENT TRIGGER (OPTIONAL)
+# 🟢 **Step 5: Event-Based Trigger**
 
-👉 Example:
+* Add Trigger → S3
+* Event → Object Created
 
-* S3 upload triggers function
+👉 Function runs when file is uploaded
 
 ---
 
-# 🔵 STEP 6: SCHEDULE TRIGGER
+# 🔵 **Step 6: Scheduled Trigger**
 
-👉 Example:
+* Add Trigger → EventBridge
+* Example:
 
-```id="5ns6rr"
+```id="srv3"
 rate(5 minutes)
 ```
 
-👉 Function runs every 5 mins
+👉 Function runs every 5 minutes
 
 ---
 
-# 🟣 STEP 7: TEST FUNCTION
+# 🟣 **Step 7: Test Function**
 
-```json id="4hbf7l"
+```json id="srv4"
 {
   "message": "Test Event"
 }
 ```
 
-👉 Output → Status Code 200
+👉 Output:
+
+* Status Code: 200
+* Execution successful
 
 ---
 
-# 🟤 STEP 8: MONITOR
+# 🟤 **Step 8: Monitoring**
 
-👉 Check logs in CloudWatch
-
-* Execution time
-* Errors
-* Usage
+* Go to Monitoring → Logs
+* View logs in CloudWatch
 
 ---
 
-# 📊 **EXPECTED OUTPUT**
+# 📊 **Expected Output**
 
 * Function created
 * Trigger executed
@@ -137,40 +131,15 @@ rate(5 minutes)
 
 ---
 
-# 🧾 **RESULT**
+# 🧾 **Result**
 
-Serverless function was successfully created, deployed, and executed using triggers. 
+The serverless application was successfully developed and deployed using serverless functions and triggers. 
 
 ---
 
 # 🧠 ⚡ MEMORY TRICK
 
-👉 Just remember:
-
-**Function → Trigger → Execute → Monitor**
-
----
-
-# 🎯 EXAM REALITY
-
-👉 Most cases:
-
-* You WON’T actually run AWS
-* You will:
-
-  * Write code
-  * Explain triggers
-  * Show flow
-
----
-
-# 🧠 VIVA QUESTIONS
-
-👉 What is serverless?
-👉 What is Lambda?
-👉 What is trigger?
-👉 Types of triggers?
-👉 Advantage of serverless?
+👉 **Function → Trigger → Execute → Monitor**
 
 ---
 

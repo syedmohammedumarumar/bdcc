@@ -1,98 +1,92 @@
 
 ---
 
-# 🧪 ✅ EXPERIMENT 6 — CLOUD VM (AWS / GCP)
+# 📄 🧪 EXPERIMENT 6 — CLOUD VIRTUAL MACHINE
 
 ---
 
-# 🎯 1. AIM
+# 🎯 **Aim**
 
-> To explore cloud platforms and create a virtual machine using a cloud service provider. 
-
----
-
-# 🧠 2. UNDERSTAND IN 30 SECONDS
-
-👉 Cloud = using computer over internet
-👉 VM = virtual computer (like your laptop, but online)
+To study and explore cloud platforms such as AWS, Microsoft Azure, and Google Cloud Platform, and to create and configure a virtual machine using a cloud service provider. 
 
 ---
 
-## 🔥 Example:
+# 🧠 **Theory**
 
-* You create a computer on cloud
-* Connect using terminal
-* Run commands
+Cloud computing provides on-demand computing resources such as servers, storage, and networking over the internet.
 
----
+A Virtual Machine (VM) is a software-based computer that runs on cloud infrastructure. It allows users to perform computing tasks without owning physical hardware.
 
-# ⚙️ 3. MAIN CONCEPT FLOW
+Cloud platforms such as AWS, Azure, and GCP provide scalable and flexible VM services. These services allow users to create, configure, monitor, and deploy applications efficiently.
 
-👉 **Sign Up → Create VM → Connect → Test**
+Advantages of cloud VMs include:
 
----
-
-# 💻 4. WHAT TO WRITE IN EXAM
-
----
-
-## 🧠 **Theory (Short)**
-
-A Virtual Machine (VM) is an on-demand computing resource in cloud computing that provides processing power without physical hardware.
-
-Cloud platforms like AWS, Azure, and GCP allow users to create and manage VMs easily. 
+* Scalability
+* Cost efficiency
+* High availability
+* Remote access
 
 ---
 
-# 🔴 PROCEDURE (AWS EC2 — MOST IMPORTANT)
+# ⚙️ **Procedure**
+
+---
+
+# 🔵 **PART A — AMAZON WEB SERVICES (AWS EC2)**
 
 ---
 
 ### Step 1: Login
 
-👉 Open AWS Console
+Open AWS Management Console and sign in.
 
 ---
 
-### Step 2: Go to EC2
+### Step 2: Navigate
 
-👉 Click **Launch Instance**
-
----
-
-### Step 3: Choose OS
-
-👉 Ubuntu 22.04
+Go to **Services → EC2 (Elastic Compute Cloud)**.
 
 ---
 
-### Step 4: Choose Instance
+### Step 3: Launch Instance
 
-👉 t2.micro (Free Tier)
-
----
-
-### Step 5: Create Key Pair
-
-👉 Download `.pem` file
+Click on **Launch Instance**.
 
 ---
 
-### Step 6: Configure Security
+### Step 4: Choose AMI
 
-👉 Allow:
+Select **Ubuntu 22.04 LTS** as the operating system.
+
+---
+
+### Step 5: Choose Instance Type
+
+Select **t2.micro (Free Tier eligible)**.
+
+---
+
+### Step 6: Configure Key Pair
+
+Create a new key pair and download the `.pem` file.
+
+---
+
+### Step 7: Configure Security Group
+
+Allow:
 
 * SSH (Port 22)
 
 ---
 
-### Step 7: Launch Instance
+### Step 8: Launch Instance
 
-👉 Click **Launch**
+Click **Launch Instance**.
 
 ---
 
-### Step 8: Connect
+### Step 9: Connect to Instance
 
 ```bash
 ssh -i key.pem ubuntu@public-ip
@@ -100,85 +94,168 @@ ssh -i key.pem ubuntu@public-ip
 
 ---
 
-# 🟢 OPTIONAL (GCP METHOD)
-
-👉 Go to:
-
-* Compute Engine → VM Instances
-* Create instance
-* Select machine type
-* Click Create
-* Use SSH
-
----
-
-# 🔵 TEST (IMPORTANT STEP)
-
-👉 Install something:
+### Step 10: Test VM
 
 ```bash
 sudo apt update
-sudo apt install nginx -y
 ```
 
-👉 Open browser:
+---
+
+### Output:
+
+Successfully connected to AWS virtual machine.
+
+---
+
+# 🟢 **PART B — GOOGLE CLOUD PLATFORM (GCP)**
+
+---
+
+### Step 1: Login
+
+Open Google Cloud Console.
+
+---
+
+### Step 2: Navigate
+
+Go to **Compute Engine → VM Instances**.
+
+---
+
+### Step 3: Create Instance
+
+Click **Create Instance**.
+
+---
+
+### Step 4: Configure Instance
+
+* Name: gcelab
+* Region: any region
+* Machine Type: e2-medium
+* OS: Debian / Ubuntu
+* Disk Size: 10 GB
+
+---
+
+### Step 5: Enable HTTP Traffic
+
+Allow HTTP traffic (port 80).
+
+---
+
+### Step 6: Create Instance
+
+Click **Create**.
+
+---
+
+### Step 7: Connect via SSH
+
+Click **SSH** button.
+
+---
+
+### Step 8: Install NGINX
+
+```bash
+sudo apt-get update
+sudo apt-get install -y nginx
+```
+
+---
+
+### Step 9: Verify
+
+Open browser:
 
 ```
-http://<public-ip>
+http://<external-ip>
 ```
 
-👉 You will see:
-👉 **Welcome to nginx**
+---
+
+### Output:
+
+```
+Welcome to nginx!
+```
 
 ---
 
-# 📊 EXPECTED OUTPUT
-
-* VM created
-* Connected via SSH
-* Nginx installed
-* Web page displayed
+# 🟡 **PART C — MICROSOFT AZURE**
 
 ---
 
-# 🧾 RESULT
+### Step 1: Login
 
-> Successfully created and configured a virtual machine using cloud platform and verified its working. 
-
----
-
-# 🧠 MEMORY TRICK
-
-👉 Just remember:
-
-**Login → Launch → Connect → Install → Test**
+Open Azure Portal.
 
 ---
 
-# 🎯 WHAT WILL HAPPEN IN EXAM
+### Step 2: Navigate
 
-👉 3 possibilities:
-
-### ✅ Case 1: Internet + AWS available
-
-→ You actually create VM
-
-### ⚠️ Case 2: No internet
-
-→ You only write procedure
-
-### 🔥 Case 3: Viva only
-
-→ They ask concept questions
+Go to **Virtual Machines → Create VM**.
 
 ---
 
-# 🧠 IMPORTANT VIVA QUESTIONS
+### Step 3: Configure VM
 
-👉 What is VM?
-👉 What is cloud computing?
-👉 What is EC2?
-👉 What is key pair?
-👉 What is security group?
+* OS: Ubuntu
+* Size: B1s / Basic
+* Username & Password
+
+---
+
+### Step 4: Configure Networking
+
+Allow:
+
+* SSH (Port 22)
+
+---
+
+### Step 5: Create VM
+
+Click **Create**.
+
+---
+
+### Step 6: Connect
+
+```bash
+ssh username@public-ip
+```
+
+---
+
+### Output:
+
+Successfully connected to Azure virtual machine.
+
+---
+
+# 📊 **Expected Output**
+
+* Virtual machine created
+* SSH connection established
+* Commands executed successfully
+* Web server (NGINX) running
+
+---
+
+# 🧾 **Result**
+
+Cloud platforms such as AWS, Google Cloud Platform, and Microsoft Azure were successfully explored. Virtual machine instances were created and configured, and basic operations were performed successfully. 
+
+---
+
+# 🧠 ⚡ MEMORY TRICK
+
+👉 Remember this flow:
+
+**Login → Create → Configure → Connect → Test**
 
 ---

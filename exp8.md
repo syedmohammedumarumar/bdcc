@@ -1,68 +1,70 @@
 
 ---
 
-# 📄 🧪 EXPERIMENT 8 — CLOUD BIG DATA CLUSTER (EMR / Dataproc)
+# 📄 🧪 EXPERIMENT 8 — CLOUD BIG DATA CLUSTER
 
 ---
 
 # 🎯 **Aim**
 
-To deploy and execute Big Data workloads by launching and configuring a cluster using cloud-managed services. 
+To deploy and execute Big Data workloads by launching and configuring a cluster using cloud-managed services such as Amazon EMR, Azure HDInsight, or Google Cloud Dataproc. 
 
 ---
 
-# 🧠 **Theory (Write 5–6 lines only)**
+# 🧠 **Theory**
 
-Cloud-managed services like Amazon EMR, Azure HDInsight, and Google Dataproc provide platforms to run Big Data frameworks like Hadoop and Spark.
+Cloud-managed Big Data services provide platforms to process large datasets without manual setup of clusters.
 
-These services automate cluster setup, provide scalability, and reduce manual configuration effort.
+These services offer:
 
-They are used to process large datasets efficiently in distributed environments. 
+* Automatic cluster provisioning
+* Scalability
+* Integrated storage
+* Support for frameworks like Hadoop, Spark, and Hive
 
----
-
-# 🧩 **UNDERSTAND IN 30 SECONDS**
-
-👉 Instead of installing Hadoop manually (Exp 1)
-👉 Cloud does it automatically for you
+They simplify the deployment and execution of Big Data workloads in distributed environments. 
 
 ---
 
-## 🔥 Flow:
-
-👉 **Create Cluster → Upload Data → Run Job → Get Output**
+# ⚙️ **Procedure**
 
 ---
 
-# ⚙️ **PROCEDURE (AWS EMR — MAIN)**
+# 🔵 **PART A — AMAZON EMR**
 
 ---
 
-## 🔴 Step 1: Login
+### Step 1: Login
 
-👉 Open AWS Console → EMR
+Open AWS Console → Go to **EMR**
 
 ---
 
-## 🔴 Step 2: Create Cluster
+### Step 2: Create Cluster
+
+Click **Create Cluster** and configure:
 
 * Cluster Name → BigDataLabCluster
 * Applications → Hadoop, Spark
 * Instances → 3
 
-👉 Click Create Cluster
+---
+
+### Step 3: Configure Storage
+
+Create S3 bucket and upload dataset (`sample.txt`)
 
 ---
 
-## 🔴 Step 3: Upload Data
+### Step 4: Launch Cluster
 
-👉 Upload file (`sample.txt`) to S3 bucket
+Click **Create Cluster** and wait until status = Running
 
 ---
 
-## 🔴 Step 4: Run Job
+### Step 5: Run Job
 
-```bash id="0i9xvc"
+```bash id="emr1"
 spark-submit --class org.apache.spark.examples.JavaWordCount \
 /usr/lib/spark/examples/jars/spark-examples.jar \
 s3://bucket-name/sample.txt
@@ -70,21 +72,85 @@ s3://bucket-name/sample.txt
 
 ---
 
-## 🔴 Step 5: Monitor
+### Step 6: Monitor
 
-👉 Check job status in EMR dashboard
-
----
-
-## 🔴 Step 6: View Output
-
-👉 Output stored in S3
+Check job status in EMR dashboard
 
 ---
 
-# 🟢 OPTIONAL (GCP DATAPROC)
+### Step 7: View Output
 
-```bash id="kz6f5g"
+Output stored in S3 bucket
+
+---
+
+# 🟢 **PART B — AZURE HDINSIGHT**
+
+---
+
+### Step 1: Login
+
+Open Azure Portal
+
+---
+
+### Step 2: Create Cluster
+
+Go to **Create Resource → HDInsight Cluster**
+
+* Cluster Type → Spark
+* Cluster Name → bigdatalabcluster
+
+---
+
+### Step 3: Upload Dataset
+
+Upload file to Azure Blob Storage
+
+---
+
+### Step 4: Run Job
+
+```bash id="az1"
+spark-submit wordcount.py sample.txt
+```
+
+---
+
+### Step 5: Monitor
+
+Use YARN UI to check job execution
+
+---
+
+# 🟡 **PART C — GOOGLE CLOUD DATAPROC**
+
+---
+
+### Step 1: Login
+
+Open Google Cloud Console
+
+---
+
+### Step 2: Create Cluster
+
+Go to Dataproc → Create Cluster
+
+* Master Node → 1
+* Worker Nodes → 2
+
+---
+
+### Step 3: Upload Dataset
+
+Upload file to Cloud Storage
+
+---
+
+### Step 4: Run Job
+
+```bash id="gcp1"
 gcloud dataproc jobs submit spark \
 --cluster bigdata-cluster \
 --class org.apache.spark.examples.JavaWordCount \
@@ -94,53 +160,34 @@ gs://bucket/sample.txt
 
 ---
 
-# 📊 **EXPECTED OUTPUT**
+### Step 5: Monitor
 
-Example:
+Check job status in Dataproc dashboard
 
-```id="3z3uee"
-Cloud 2
-data 2
-Big 2
-cluster 1
+---
+
+# 📊 **Expected Output**
+
+Example Word Count result:
+
+```
+Cloud   2  
+Data    2  
+Big     2  
+cluster 1  
 ```
 
 ---
 
-# 🧾 **RESULT**
+# 🧾 **Result**
 
-Big Data cluster was successfully created and workload was executed using cloud-managed services. 
+Big Data cluster was successfully deployed using cloud-managed services, and the workload was executed using Hadoop/Spark frameworks. 
 
 ---
 
 # 🧠 ⚡ MEMORY TRICK
 
-👉 Just remember:
-
-**Cluster → Upload → Run → Output**
-
----
-
-# 🎯 WHAT HAPPENS IN EXAM
-
-👉 Mostly:
-
-* You WON’T actually create cluster (time + internet issue)
-* You just:
-
-  * Write steps
-  * Explain flow
-  * Show command
-
----
-
-# 🧠 VIVA QUESTIONS
-
-👉 What is EMR?
-👉 What is cluster?
-👉 Difference between local Hadoop and EMR?
-👉 What is Spark?
-👉 What is distributed processing?
+👉 **Cluster → Upload → Run → Monitor → Output**
 
 ---
 
