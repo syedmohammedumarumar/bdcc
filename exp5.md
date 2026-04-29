@@ -191,3 +191,311 @@ Spark DataFrame operations such as select, filter, and groupBy were successfully
 
 ---
 
+
+
+
+# EXp 5 Practical for lab 
+---
+
+# 🧪 🔥 EXPERIMENT 5 — FULL PRACTICAL (STEP-BY-STEP)
+
+---
+
+# 🟢 STEP 0: OPEN TERMINAL
+
+👉 Press:
+
+```text
+Ctrl + Alt + T
+```
+
+---
+
+# 🟢 STEP 1: START HADOOP (VERY IMPORTANT)
+
+👉 Type:
+
+```bash
+start-dfs.sh
+```
+
+👉 Press **Enter**
+
+---
+
+👉 Check:
+
+```bash
+jps
+```
+
+👉 Press Enter
+
+✔ Must see:
+
+```
+NameNode
+DataNode
+SecondaryNameNode
+```
+
+---
+
+# 🟢 STEP 2: LEAVE SAFE MODE
+
+👉 Type:
+
+```bash
+hdfs dfsadmin -safemode leave
+```
+
+👉 Press Enter
+
+---
+
+# 🟢 STEP 3: CREATE HDFS FOLDER
+
+```bash
+hdfs dfs -mkdir -p /data/spark
+```
+
+👉 Press Enter
+
+---
+
+# 🟢 STEP 4: CREATE DATASET
+
+👉 Type:
+
+```bash
+nano sales.csv
+```
+
+👉 Press Enter
+
+---
+
+👉 Paste:
+
+```
+order_id,customer,city,category,amount,status
+101,Ravi,Hyderabad,Electronics,25000,Delivered
+102,Neha,Pune,Fashion,1500,Returned
+103,Arjun,Hyderabad,Grocery,800,Delivered
+104,Rahul,Pune,Electronics,32000,Delivered
+105,Sneha,Delhi,Fashion,2200,Delivered
+```
+
+---
+
+👉 Save:
+
+* Ctrl + X
+* Y
+* Enter
+
+---
+
+# 🟢 STEP 5: UPLOAD FILE TO HDFS
+
+```bash
+hdfs dfs -put sales.csv /data/spark/
+```
+
+👉 Press Enter
+
+---
+
+👉 Verify:
+
+```bash
+hdfs dfs -ls /data/spark
+```
+
+---
+
+# 🔴 STEP 6: INSTALL SPARK
+
+👉 Type:
+
+```bash
+cd ~
+wget https://downloads.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz
+```
+
+👉 Enter
+
+---
+
+```bash
+tar -xvzf spark-3.5.1-bin-hadoop3.tgz
+```
+
+👉 Enter
+
+---
+
+```bash
+sudo mv spark-3.5.1-bin-hadoop3 /usr/local/spark
+```
+
+👉 Enter password
+
+---
+
+# 🔴 STEP 7: SET SPARK PATH
+
+```bash
+nano ~/.bashrc
+```
+
+👉 Go to bottom
+
+👉 Add:
+
+```bash
+export SPARK_HOME=/usr/local/spark
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+```
+
+---
+
+👉 Save:
+
+* Ctrl + X
+* Y
+* Enter
+
+---
+
+👉 Apply:
+
+```bash
+source ~/.bashrc
+```
+
+---
+
+# 🔴 STEP 8: VERIFY SPARK
+
+```bash
+spark-shell
+```
+
+👉 If opens → SUCCESS
+
+👉 Exit:
+
+```bash
+exit
+```
+
+---
+
+# 🔴 STEP 9: START PYSPARK
+
+```bash
+pyspark
+```
+
+👉 Wait until:
+
+```
+>>>
+```
+
+---
+
+# 🟢 STEP 10: CREATE SESSION
+
+```python
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("Spark DataFrame Lab").getOrCreate()
+```
+
+👉 Press Enter
+
+---
+
+# 🟢 STEP 11: LOAD DATA
+
+```python
+df = spark.read.option("header", True).option("inferSchema", True).csv("hdfs:///data/spark/sales.csv")
+```
+
+👉 Enter
+
+---
+
+# 🟢 STEP 12: DISPLAY DATA
+
+```python
+df.show()
+```
+
+---
+
+# 🟢 STEP 13: SELECT
+
+```python
+df.select("order_id", "customer", "city").show()
+```
+
+---
+
+# 🟢 STEP 14: FILTER
+
+```python
+from pyspark.sql.functions import col
+df.filter((col("status") == "Delivered") & (col("amount") > 2000)).show()
+```
+
+---
+
+# 🟢 STEP 15: GROUPBY
+
+```python
+from pyspark.sql.functions import sum as _sum, avg as _avg, count as _count
+
+df.groupBy("city").agg(
+    _count("*").alias("total_orders"),
+    _sum("amount").alias("total_sales"),
+    _avg("amount").alias("avg_order_value")
+).show()
+```
+
+---
+
+# 🎯 DONE — FULL EXPERIMENT COMPLETE
+
+---
+
+# 🧠 WHAT TO SAY WHILE DOING
+
+👉 Say step-by-step:
+
+* “Starting Hadoop services”
+* “Creating HDFS directory”
+* “Uploading dataset”
+* “Installing Spark”
+* “Running PySpark”
+* “Performing DataFrame operations”
+
+---
+
+# 🚨 IMPORTANT EXAM SHORTCUT
+
+👉 If time less:
+
+✔ Skip Spark install
+✔ Write code
+✔ Explain logic
+
+---
+
+# 🧠 MEMORY TRICK
+
+👉 **HDFS → Spark → Load → Select → Filter → Group**
+
+---
+
